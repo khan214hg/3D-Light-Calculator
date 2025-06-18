@@ -21,7 +21,6 @@ function handleInput(value) {
     }
   } else if (value === "=") {
     try {
-      // Evaluate safely by replacing any accidental invalid endings
       const sanitized = currentInput.replace(/[^-()\d/*+.]/g, "");
       currentInput = eval(sanitized).toString();
     } catch {
@@ -32,7 +31,6 @@ function handleInput(value) {
       currentInput = value;
     } else {
       const lastChar = currentInput.slice(-1);
-      // Prevent two operators in a row
       if (
         ["+", "-", "*", "/"].includes(lastChar) &&
         ["+", "-", "*", "/"].includes(value)
@@ -50,7 +48,6 @@ function updateDisplay() {
   display.textContent = currentInput;
 }
 
-// Optional: Keyboard support
 document.addEventListener("keydown", (e) => {
   const key = e.key;
   if (key === "Enter") {
